@@ -1,5 +1,6 @@
 package ui;
 
+import ui.component.InputLine;
 import ui.component.MyPanel;
 import ui.component.OriginTextLine;
 import ui.component.StatusBar;
@@ -17,23 +18,7 @@ public class UIFrame extends  JFrame {
         setSize(800,600);
         setLocation(500,300);
         panel = new MyPanel();
-        OriginTextLine line =  new OriginTextLine();
-        JButton button = new JButton("add");
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                line.insertNewLine("wa hahahaha");
-                try {
-                    line.checkInput('a');
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-        panel.add(line);
-        panel.add(button);
-//        statusBar = new StatusBar();
-//        panel.add(statusBar);
+        panel.add(new Line());
         getContentPane().add(panel);
         setVisible(true);
     }
