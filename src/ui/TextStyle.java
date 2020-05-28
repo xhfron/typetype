@@ -14,7 +14,7 @@ public class TextStyle {
                 )
         );
         StyleConstants.setFontSize(style,28);
-        StyleConstants.setFontFamily(style,"微软雅黑");
+        StyleConstants.setFontFamily(style,"Consolas");
         return style;
     }
     public static Style getWrongStyle(){
@@ -26,7 +26,7 @@ public class TextStyle {
         return style;
     }
     public static Font getInputFont(){
-        return new Font("微软雅黑",Font.PLAIN,28);
+        return new Font("Consolas",Font.PLAIN,28);
     }
 
 }

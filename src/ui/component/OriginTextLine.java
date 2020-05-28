@@ -17,6 +17,7 @@ public class OriginTextLine extends JTextPane {
         loadStyle(doc);
         setPreferredSize(new Dimension(750, 44));
         setBackground(new Color(230, 230, 244));
+        setBorder(BorderFactory.createLineBorder(Color.BLACK));
         doc.insertString(0, originText, getStyle("normal"));
         setEditable(false);
     }
@@ -35,9 +36,9 @@ public class OriginTextLine extends JTextPane {
     }
 
     public boolean check(String input) {
-        System.out.println(input);
-        System.out.println(originText);
-        System.out.println("---------------");
+//        System.out.println(input);
+//        System.out.println(originText);
+//        System.out.println("---------------");
 
         boolean correct = true;
         try {
@@ -57,5 +58,8 @@ public class OriginTextLine extends JTextPane {
         return correct;
     }
 
+    public int getLength(){
+        return originText.length();
+    }
 
 }

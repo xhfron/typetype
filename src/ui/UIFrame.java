@@ -18,7 +18,7 @@ public class UIFrame extends  JFrame {
         setSize(800,600);
         setLocation(500,300);
         panel = new MyPanel();
-        panel.add(new Line());
+        panel.add(new Pages());
         getContentPane().add(panel);
         setVisible(true);
     }
