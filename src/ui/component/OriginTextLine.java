@@ -10,14 +10,16 @@ import java.awt.*;
 
 public class OriginTextLine extends JTextPane {
     StyledDocument doc;
-    String originText = "this is a line for test";
+    String originText;
 
-    public OriginTextLine() throws BadLocationException {
+    public OriginTextLine(String originText) throws BadLocationException {
         doc = getStyledDocument();
         loadStyle(doc);
         setPreferredSize(new Dimension(750, 44));
         setBackground(new Color(230, 230, 244));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        this.originText = originText;
         doc.insertString(0, originText, getStyle("normal"));
         setEditable(false);
     }

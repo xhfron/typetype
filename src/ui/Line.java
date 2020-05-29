@@ -19,7 +19,7 @@ public class Line extends JPanel{
     private int lineNumber;
     private LineCompleteListener listener;
 
-    public Line(int lineNumber) {
+    public Line(int lineNumber,String originText) {
         this.lineNumber = lineNumber;
         boxLayout = new BoxLayout(this,BoxLayout.Y_AXIS);
         setBackground(null);
@@ -28,7 +28,7 @@ public class Line extends JPanel{
         setBorder(new LineBorder(new Color(211, 238, 244),2,true));
         setSize(750,100);
         try{
-            originTextLine = new OriginTextLine();
+            originTextLine = new OriginTextLine(originText);
             inputLine = new InputLine();
         }catch (Exception e){
             e.printStackTrace();
@@ -40,11 +40,11 @@ public class Line extends JPanel{
             @Override
             public void caretUpdate(CaretEvent e) {
                 String inputString  = inputLine.getText();
+                originTextLine.check(inputLine.getText());
                 if(inputString.length()>=originTextLine.getLength()){
                     lineComplete();
                     return;
                 }
-                originTextLine.check(inputLine.getText());
             }
         });
     }
