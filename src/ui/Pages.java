@@ -16,7 +16,7 @@ public class Pages extends JPanel{
     List<Line> lines;
     private LineCompleteListener listener;
     private int nextLoadLine; //当前页的第一行的行号
-
+    private int currentLine;
     public Pages() {
         Pattern p = Pattern.compile("\\s*\n");
         Matcher m = p.matcher(passage);
@@ -25,7 +25,7 @@ public class Pages extends JPanel{
         listener = new LineCompleteListener() {
             @Override
             public void nextLine(CompleteEvent event) {
-                dealLineComplete(event.getLineNumber());//稍后处理正确率
+                lineComplete(event.getLineNumber());//稍后处理正确率
             }
         };
         BoxLayout boxLayout = new BoxLayout(this,BoxLayout.Y_AXIS);
@@ -33,6 +33,7 @@ public class Pages extends JPanel{
         setOpaque(false);
         lines = new ArrayList<>();
         nextLoadLine = 0;
+        currentLine = 0;
         makeLine(lines);
         loadPage();
     }
@@ -52,20 +53,27 @@ public class Pages extends JPanel{
         return count;
     }
 
-     private void dealLineComplete(int lineNumber){
+     private void lineComplete(int lineNumber){
         System.out.println(nextLoadLine);
         System.out.println(lineNumber);
         System.out.println();
+        if(lineNumber==lines.size()-1){
+            passageComplete();
+        }
         if(lineNumber<nextLoadLine-1){
             lines.get(lineNumber+1).getFocus();
         }else{
             loadPage();
             lines.get(lineNumber+1).getFocus();
         }
-
+        currentLine++;
      }
 
-     private void loadPage(){
+    private void passageComplete() {
+        System.out.println("收工了");
+    }
+
+    private void loadPage(){
         removeAll();
         repaint();
         for(int i=nextLoadLine;i<Math.min(nextLoadLine+lineLimit,lines.size());i++){

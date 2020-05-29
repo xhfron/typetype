@@ -1,9 +1,6 @@
 package ui;
 
-import ui.component.InputLine;
-import ui.component.MyPanel;
-import ui.component.OriginTextLine;
-import ui.component.StatusBar;
+import ui.component.*;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -18,7 +15,7 @@ public class UIFrame extends  JFrame {
         setSize(800,600);
         setLocation(500,300);
         panel = new MyPanel();
-        panel.add(new Pages());
+        panel.add(new TimerUI());
         getContentPane().add(panel);
         setVisible(true);
     }
