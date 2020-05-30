@@ -1,14 +1,13 @@
 package ui;
 
 import bean.Passage;
+import dao.History;
 import ui.component.MyPanel;
 import ui.event.FinishEvent;
 import ui.listener.PassageFinishListener;
-
 import javax.swing.*;
 import java.awt.*;
-import java.net.http.WebSocket;
-import java.util.EventListener;
+
 
 public class TypingUI extends MyPanel {
     Passage passage;
@@ -38,7 +37,6 @@ public class TypingUI extends MyPanel {
     }
 
     private void dealFinish(String input) {
-        System.out.println(input);
         int cost = statusBar.stop();
         int count = 0;
         for(int i=0;i<passage.getContent().length();i++){
@@ -48,5 +46,6 @@ public class TypingUI extends MyPanel {
             count++;
         }
         statusBar.updateStatus(60*input.length()/cost,count*1.0/input.length());
+        History.analyze(passage,input,60*input.length()/cost,count*1.0/input.length());
     }
 }

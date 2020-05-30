@@ -40,6 +40,9 @@ public class Line extends JPanel{
         inputLine.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
+                if(lineNumber==4){
+                    System.out.println("told me");
+                }
                 String inputString  = inputLine.getText();
                 originTextLine.check(inputLine.getText());
                 if(inputString.length()>=originTextLine.getLength()){

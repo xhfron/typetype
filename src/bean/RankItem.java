@@ -2,8 +2,14 @@ package bean;
 
 public class RankItem {
     String passageName;
-    int cost;
+    int speed;
     double rate;
+
+    public RankItem(String passageName, int speed, double rate) {
+        this.passageName = passageName;
+        this.speed = speed;
+        this.rate = rate;
+    }
 
     public String getPassageName() {
         return passageName;
@@ -12,17 +18,16 @@ public class RankItem {
     public void setPassageName(String passageName) {
         this.passageName = passageName;
     }
-
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
-
     public double getRate() {
         return rate;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public void setRate(double rate) {

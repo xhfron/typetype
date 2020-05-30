@@ -20,7 +20,8 @@ public class UIFrame extends  JFrame {
         setSize(800,600);
         setLocation(500,300);
         passage = new Passage();
-        passage.setContent("sasasasasasa");
+        passage.setContent("This Is Us is an American family comedy drama television series on September 20, 2016."
+                );
         typing = new TypingUI(passage);
         JButton jButton = new JButton("aaaaaaaaaa");
         jButton.addActionListener(new ActionListener() {

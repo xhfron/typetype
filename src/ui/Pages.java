@@ -13,7 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Pages extends JPanel{
-    private final int lineWidth = 4;//每行多少个字符 英文49个
+    private final int lineWidth = 49;//每行多少个字符 英文49个
     private int lineLimit = 4 ; //每页最多多少行 5或者4
     List<Line> lines;
     private LineCompleteListener listener;
@@ -52,7 +52,9 @@ public class Pages extends JPanel{
             lines.add(i,temp);
         }
         if(length%lineWidth!=0){
-            lines.add(new Line(count,passage.substring(count*lineWidth)));
+            Line temp = new Line(count,passage.substring(count*lineWidth));
+            temp.addLineCompleteListener(listener);
+            lines.add(temp);
             count++;
         }
         System.out.println("生成了"+count);
@@ -82,7 +84,6 @@ public class Pages extends JPanel{
             line.stop();
             input += line.getInput();
         }
-        System.out.println("收工了");
         finishListener.settle(new FinishEvent(this,input));
     }
 
