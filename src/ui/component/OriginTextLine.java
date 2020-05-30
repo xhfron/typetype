@@ -46,7 +46,7 @@ public class OriginTextLine extends JTextPane {
         try {
             int index;
             doc.remove(0, doc.getLength());
-            for (index = 0; index < input.length(); index++) {
+            for (index = 0; index < Math.min(input.length(),originText.length()); index++) {
                 doc.insertString(index, String.valueOf(originText.charAt(index)),
                         (originText.charAt(index) != input.charAt(index)) ? getStyle("wrong") : getStyle("normal"));
                 correct = correct==false?false:(originText.charAt(index) != input.charAt(index));

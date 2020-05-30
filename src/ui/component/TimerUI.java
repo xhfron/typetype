@@ -7,14 +7,13 @@ import java.awt.event.ActionListener;
 public class TimerUI extends JLabel {
     int minute;
     int second;
+    Timer timer;
     public TimerUI() {
-        setText("111111111");
         minute = 0;
         second = 0;
-        new Timer(500, new ActionListener() {
+        timer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("yes");
                 second ++;
                 if(second == 60){
                     minute++;
@@ -22,6 +21,19 @@ public class TimerUI extends JLabel {
                 }
                 setText(minute+":"+second);
             }
-        }).start();
+        });
+        timer.start();
+    }
+
+    public void setPause(boolean status){
+        if(status){
+            timer.stop();
+        }else{
+            timer.start();
+        }
+    }
+
+    public int getSecond(){
+        return minute*60+second;
     }
 }

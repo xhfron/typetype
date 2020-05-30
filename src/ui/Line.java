@@ -1,5 +1,6 @@
 package ui;
 
+import bean.Passage;
 import ui.component.InputLine;
 import ui.component.OriginTextLine;
 import ui.event.CompleteEvent;
@@ -61,5 +62,19 @@ public class Line extends JPanel{
 
     public void getFocus() {
         inputLine.requestFocus();
+    }
+    void stop(){
+        inputLine.setEnabled(false);
+    }
+    void pause(){
+        inputLine.setEnabled(false);
+        originTextLine.setVisible(false);
+    }
+    void resume(){
+        inputLine.setEnabled(true);
+        originTextLine.setVisible(true);
+    }
+    String getInput(){
+        return inputLine.getText();
     }
 }
