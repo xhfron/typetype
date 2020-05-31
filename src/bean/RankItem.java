@@ -1,6 +1,6 @@
 package bean;
 
-public class RankItem {
+public class RankItem implements java.io.Serializable{
     String passageName;
     int speed;
     double rate;
@@ -32,5 +32,10 @@ public class RankItem {
 
     public void setRate(double rate) {
         this.rate = rate;
+    }
+
+    @Override
+    public String toString() {
+        return passageName+" "+speed+" "+rate;
     }
 }

@@ -1,13 +1,17 @@
 package ui;
 
 import bean.Passage;
-import ui.component.*;
+import dao.Errorbook;
+import dao.History;
+import dao.Rank;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 //主界面暂定使用Border Layout
 public class UIFrame extends  JFrame {
     JPanel panel;
@@ -33,5 +37,12 @@ public class UIFrame extends  JFrame {
         });
         add(jButton);
         setVisible(true);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                History.save();
+                System.out.println("out trigger");
+            }
+        });
     }
 }

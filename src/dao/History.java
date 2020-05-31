@@ -16,6 +16,13 @@ public class History {
     public static void analyze(Passage passage,String input,int speed,double correctRate){
         Errorbook.checkWrongWord(passage.getContent(),input);
         Rank.addItem(new RankItem(passage.getTitle(),speed,correctRate));
-
+    }
+    public static void load(){
+        Errorbook.load();
+        Rank.load();
+    }
+    public static void save(){
+        Errorbook.save();
+        Rank.save();
     }
 }
