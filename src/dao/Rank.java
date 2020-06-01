@@ -21,9 +21,9 @@ public class Rank{
         }catch (Exception e){
             e.printStackTrace();
         }
-//        for(RankItem item : Rank.getRanks()){
-//            System.out.println(item);
-//        }
+        for(RankItem item : Rank.getRanks()){
+            System.out.println(item);
+        }
     }
 
     public  static void save(){
@@ -50,4 +50,5 @@ public class Rank{
     public static void setRanks(List<RankItem> ranks) {
         Rank.ranks = ranks;
     }
+
 }

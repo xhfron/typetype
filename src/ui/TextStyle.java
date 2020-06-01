@@ -2,10 +2,15 @@ package ui;
 
 import javax.naming.Context;
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.text.*;
 import java.awt.*;
 
 public class TextStyle {
+
+    public static Font getRankFont(){
+        return new Font("黑体",Font.PLAIN,20);
+    }
     public static Style getNormalStyle(){
         Style style = StyleContext.getDefaultStyleContext().addStyle(
                 "normal",

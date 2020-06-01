@@ -35,7 +35,7 @@ public class UIFrame extends  JFrame {
                 setContentPane(typing);
             }
         });
-        add(jButton);
+        add(new RankUI());
         setVisible(true);
         addWindowListener(new WindowAdapter() {
             @Override

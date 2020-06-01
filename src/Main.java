@@ -1,3 +1,4 @@
+import bean.RankItem;
 import dao.Errorbook;
 import dao.History;
 import dao.Rank;
