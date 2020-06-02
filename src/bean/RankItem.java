@@ -36,6 +36,6 @@ public class RankItem implements java.io.Serializable{
 
     @Override
     public String toString() {
-        return passageName+" "+speed+" "+rate;
+        return "文章"+String.format("%10.10s",passageName)+" 速度"+speed+" 正确率"+rate;
     }
 }

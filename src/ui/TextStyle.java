@@ -34,4 +34,7 @@ public class TextStyle {
         return new Font("Consolas",Font.PLAIN,28);
     }
 
+    public static Font getTitleFont() {
+        return new Font("黑体",Font.PLAIN,40);
+    }
 }

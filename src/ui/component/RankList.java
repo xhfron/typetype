@@ -11,6 +11,7 @@ import java.util.List;
 public class RankList extends JList {
     private List items;
     public RankList() {
+        setPreferredSize(new Dimension(500,400));
         items = new ArrayList<>();
         load();
         setListData(items.toArray());

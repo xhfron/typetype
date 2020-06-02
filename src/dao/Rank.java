@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Rank{
     static private List<RankItem> ranks;
-    static final String rankFilePath = "/rank.ser";
+    static final String rankFilePath = "rank.ser";
     public static void load(){
         File rankFile = new File(rankFilePath);
         try{
@@ -17,6 +17,7 @@ public class Rank{
                 Rank.setRanks((List<RankItem>) new ObjectInputStream(new FileInputStream(rankFile.getPath())).readObject());
             }else {
                 Rank.setRanks(new ArrayList<>());
+                Rank.getRanks().add(new RankItem("排行榜",0,0));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -51,4 +52,7 @@ public class Rank{
         Rank.ranks = ranks;
     }
 
+    public static void clear() {
+        ranks.clear();
+    }
 }
