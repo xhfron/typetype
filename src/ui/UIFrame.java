@@ -30,7 +30,6 @@ public class UIFrame extends  JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 History.save();
-                System.out.println("out trigger");
             }
         });
     }
