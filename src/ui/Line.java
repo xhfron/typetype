@@ -19,6 +19,7 @@ public class Line extends JPanel {
     private BoxLayout boxLayout;
     private int lineNumber;
     private LineCompleteListener listener;
+    boolean pause = false;
     public Line(int lineNumber, String originText) {
         this.lineNumber = lineNumber;
         boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
@@ -53,6 +54,7 @@ public class Line extends JPanel {
         inputLine.requestFocus();
         originTextLine.showText();
         inputLine.addCaretListener(e -> {
+            if(pause) return;
             String inputString = inputLine.getText();
             originTextLine.check(inputLine.getText());
             if (inputString.length() >= originTextLine.getLength()) {
@@ -69,11 +71,13 @@ public class Line extends JPanel {
     void pause() {
         inputLine.setEditable(false);
         originTextLine.hideText();
+        pause = true;
     }
 
     void resume() {
         inputLine.setEditable(true);
         originTextLine.showText();
+        pause =false;
     }
 
     String getInput() {
