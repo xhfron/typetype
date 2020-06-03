@@ -5,36 +5,43 @@ import dao.PassageData;
 import ui.component.MyPanel;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.*;
 
-public class PassageChooser extends JFrame {
+public class PassageChooser extends JFrame{
+    JFileChooser fileChooser;
+    JFrame frame;
     public PassageChooser() {
-        super("文章选择");
-        setSize(300,400);
-        setContentPane(new MyPanel());
-        PassageData.getData().forEach(e->{
-            add(getItem(e));
-        });
-        setLocation(600,400);
-        setVisible(true);
+        fileChooser = new JFileChooser();
+        fileChooser.setSize(750,450);
+        fileChooser.setLocation(600,400);
+        add(fileChooser);
+        choose();
+//        setVisible(true);
     }
-    private JLabel getItem(Passage passage){
 
-
-        JLabel label = new JLabel("    "+passage.getTitle());
-        label.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                new UIFrame(new TypingUI(passage));
-                setVisible(false);
+    private void choose(){
+        File f;
+        StringBuffer content = new StringBuffer();
+        if(fileChooser.showDialog(this,"导入文章")==JFileChooser.APPROVE_OPTION){
+             f = fileChooser.getSelectedFile();
+            try {
+                String temp;
+                BufferedReader reader= new BufferedReader(new FileReader(f));
+                while((temp=reader.readLine())!=null){
+                    content.append(temp);
+                }
+                new UIFrame(new TypingUI(new Passage(f.getName(),content.toString())));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
-        label.setFont(TextStyle.getInputFont());
-        label.setPreferredSize(new Dimension(300,30));
-        label.setBorder(BorderFactory.createMatteBorder(0,0,1,0,Color.lightGray));
 
-        return label;
+        }
+
     }
+
 }
