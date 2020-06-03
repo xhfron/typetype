@@ -18,15 +18,14 @@ public class Pages extends JPanel{
     List<Line> lines;
     private LineCompleteListener listener;
     private int nextLoadLine; //当前页的第一行的行号
-    private int currentLine;
+    private int currentLine = 0;
     String passage;
     PassageFinishListener finishListener;
     public Pages(String passage) {
-        this.passage = passage;
         Pattern p = Pattern.compile("\\s*\n");
         Matcher m = p.matcher(passage);
         passage = m.replaceAll(" ");
-
+        this.passage = passage;
         listener = new LineCompleteListener() {
             @Override
             public void nextLine(CompleteEvent event) {
@@ -70,10 +69,10 @@ public class Pages extends JPanel{
             return;
         }
         if(lineNumber<nextLoadLine-1){
-            lines.get(lineNumber+1).getFocus();
+            lines.get(lineNumber+1).active();
         }else{
             loadPage();
-            lines.get(lineNumber+1).getFocus();
+            lines.get(lineNumber+1).active();
         }
         currentLine++;
      }
@@ -96,9 +95,19 @@ public class Pages extends JPanel{
         }
         nextLoadLine += lineLimit;
         repaint();
+        lines.get(currentLine).active();
      }
 
     public void addFinishListener(PassageFinishListener passageFinishListener) {
         finishListener = passageFinishListener;
+    }
+
+    public void dealPause(boolean pause) {
+        Line line = lines.get(currentLine);
+            if(pause){
+                line.pause();
+            }else{
+                line.resume();
+            }
     }
 }

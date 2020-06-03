@@ -5,6 +5,8 @@ import dao.History;
 import ui.component.MyPanel;
 import ui.event.FinishEvent;
 import ui.listener.PassageFinishListener;
+import ui.listener.PauseListener;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,29 +16,20 @@ public class TypingUI extends MyPanel {
     Pages page;
     StatusBar statusBar;
     PassageFinishListener finishListener;
+    PauseListener pauseListener;
     public TypingUI(Passage passage) {
         this.passage = passage;
         setSize(800,600);
-//        setLayout(new BorderLayout());
 
         page = new Pages(passage.getContent());
         page.addFinishListener(
-                finishListener = new PassageFinishListener() {
-                    @Override
-                    public void settle(FinishEvent event) {
-                        dealFinish(event.getInput());
-                    }
-                }
+                finishListener = event -> dealFinish(event.getInput())
         );
-        statusBar = new StatusBar();
+        pauseListener = pause -> page.dealPause(pause);
+        statusBar = new StatusBar(pauseListener);
 
         add(page,BorderLayout.CENTER);
         add(statusBar,BorderLayout.SOUTH);
-
-//        add(page,BorderLayout.CENTER);
-//        add(statusBar,BorderLayout.SOUTH);
-//        add(Box.createHorizontalStrut(8),BorderLayout.EAST);
-//        add(Box.createHorizontalStrut(8),BorderLayout.WEST);
     }
 
     private void dealFinish(String input) {

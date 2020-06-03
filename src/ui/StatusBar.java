@@ -3,6 +3,7 @@ package ui;
 import ui.component.MyButton;
 import ui.component.MyPanel;
 import ui.component.TimerUI;
+import ui.listener.PauseListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,10 +13,11 @@ import java.awt.event.ActionListener;
 public class StatusBar extends JPanel{
     TimerUI timer;
     JButton pause;
-    boolean timerFlag = true;
+    boolean timerFlag = false;
     JLabel status;
-    double progress;
-    public StatusBar() {
+    PauseListener listener;
+    public StatusBar(PauseListener listener) {
+        this.listener = listener;
         setBackground(new Color(213, 236, 244, 255));
         setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
         add(Box.createHorizontalStrut(8));
@@ -25,8 +27,9 @@ public class StatusBar extends JPanel{
         pause.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                timer.setPause(timerFlag);
                 timerFlag = !timerFlag;
+                listener.dealPause(timerFlag);
+                timer.setPause(timerFlag);
                 if(timerFlag)
                     pause.setText("继续");
                 else

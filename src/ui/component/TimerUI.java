@@ -11,7 +11,7 @@ public class TimerUI extends JLabel {
     public TimerUI() {
         minute = 0;
         second = 0;
-        timer = new Timer(500, new ActionListener() {
+        timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 second ++;

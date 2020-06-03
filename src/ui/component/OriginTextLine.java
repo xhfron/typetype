@@ -16,32 +16,40 @@ public class OriginTextLine extends JTextPane {
         doc = getStyledDocument();
         loadStyle(doc);
         setPreferredSize(new Dimension(750, 44));
-        setBackground(new Color(230, 230, 244));
+        setBackground(TextStyle.getOriginTextBackground());
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
         this.originText = originText;
-        doc.insertString(0, originText, getStyle("normal"));
+        hideText();
         setEditable(false);
+    }
+
+    public void hideText(){
+        try{
+            doc.remove(0, doc.getLength());
+            doc.insertString(0, originText, getStyle("invisible"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void showText() {
+        try{
+            doc.remove(0, doc.getLength());
+            doc.insertString(0, originText, getStyle("normal"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     void loadStyle(StyledDocument doc) {
         doc.addStyle("normal", TextStyle.getNormalStyle());
         doc.addStyle("wrong", TextStyle.getWrongStyle());
+        doc.addStyle("invisible",TextStyle.getInvisibleStyle());
     }
 
-    public void insertNewLine(String word) {
-        try {
-            doc.insertString(2, "\n" + word, doc.getStyle("my style"));
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
-    }
 
     public boolean check(String input) {
-//        System.out.println(input);
-//        System.out.println(originText);
-//        System.out.println("---------------");
-
         boolean correct = true;
         try {
             int index;
