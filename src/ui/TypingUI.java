@@ -17,7 +17,7 @@ public class TypingUI extends MyPanel {
     public TypingUI(Passage passage) {
         this.passage = passage;
         setSize(800,600);
-        setLayout(new BorderLayout());
+//        setLayout(new BorderLayout());
 
         page = new Pages(passage.getContent());
         page.addFinishListener(
@@ -29,11 +29,14 @@ public class TypingUI extends MyPanel {
                 }
         );
         statusBar = new StatusBar();
-        add(new JLabel("menu"),BorderLayout.NORTH);
+
         add(page,BorderLayout.CENTER);
         add(statusBar,BorderLayout.SOUTH);
-        add(Box.createHorizontalStrut(8),BorderLayout.EAST);
-        add(Box.createHorizontalStrut(8),BorderLayout.WEST);
+
+//        add(page,BorderLayout.CENTER);
+//        add(statusBar,BorderLayout.SOUTH);
+//        add(Box.createHorizontalStrut(8),BorderLayout.EAST);
+//        add(Box.createHorizontalStrut(8),BorderLayout.WEST);
     }
 
     private void dealFinish(String input) {

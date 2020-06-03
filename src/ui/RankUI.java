@@ -14,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RankUI extends MyPanel{
-    private RankList ranklist;
     private JPanel container;
     private JLabel title;
     private int count = 0;

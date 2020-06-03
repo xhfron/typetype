@@ -17,7 +17,6 @@ public class Rank{
                 Rank.setRanks((List<RankItem>) new ObjectInputStream(new FileInputStream(rankFile.getPath())).readObject());
             }else {
                 Rank.setRanks(new ArrayList<>());
-                Rank.getRanks().add(new RankItem("排行榜",0,0));
             }
         }catch (Exception e){
             e.printStackTrace();

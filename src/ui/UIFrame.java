@@ -4,6 +4,7 @@ import bean.Passage;
 import dao.Errorbook;
 import dao.History;
 import dao.Rank;
+import ui.component.MyPanel;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -19,23 +20,11 @@ public class UIFrame extends  JFrame {
     Passage passage;
     StatusBar statusBar;
     boolean flag = true;
-    public UIFrame() throws BadLocationException {
+    public UIFrame(MyPanel panel){
         super("打字游戏");
         setSize(800,600);
         setLocation(500,300);
-        passage = new Passage();
-        passage.setContent("This Is Us is an American family comedy drama television series on September 20, 2016."
-                );
-        typing = new TypingUI(passage);
-        JButton jButton = new JButton("aaaaaaaaaa");
-        jButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                setContentPane(typing);
-            }
-        });
-        add(new RankUI());
+        add(panel);
         setVisible(true);
         addWindowListener(new WindowAdapter() {
             @Override

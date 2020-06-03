@@ -77,4 +77,8 @@ public class Errorbook implements java.io.Serializable{
             e.printStackTrace();
         }
     }
+
+    public static void clear() {
+        map.clear();
+    }
 }

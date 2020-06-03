@@ -27,7 +27,7 @@ public class Line extends JPanel{
         setOpaque(false);
         setLayout(boxLayout);
         setBorder(new LineBorder(new Color(211, 238, 244),2,true));
-        setSize(750,100);
+        setPreferredSize(new Dimension(750,100));
         try{
             originTextLine = new OriginTextLine(originText);
             inputLine = new InputLine();
