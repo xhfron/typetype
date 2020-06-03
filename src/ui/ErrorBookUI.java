@@ -46,6 +46,7 @@ public class ErrorBookUI extends MyPanel{
 
         Errorbook.getMap().forEach((k,v)->{
             if(count<limit){
+                System.out.println(k+"  "+v);
                 words.add(getItem(k,v));
                 words.add(Box.createVerticalStrut(8));
             }
@@ -63,9 +64,9 @@ public class ErrorBookUI extends MyPanel{
         container.add(Box.createVerticalStrut(20));
     }
 
-    private JLabel getItem(String word,int count) {
+    private JLabel getItem(String word,int fre) {
         count++;
-        JLabel item = new JLabel(word+" "+count);
+        JLabel item = new JLabel(word+" "+fre);
         item.setFont(TextStyle.getRankFont());
         item.setForeground(Color.white);
         item.setBorder(BorderFactory.createEmptyBorder(0,0,0,40));

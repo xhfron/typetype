@@ -34,7 +34,6 @@ public class Errorbook implements java.io.Serializable{
             }else if(ch>='A'&&ch<='Z'){
                 word+=ch;
             }else{
-
                 if(flag){
                     count(word);
                 }
@@ -57,12 +56,6 @@ public class Errorbook implements java.io.Serializable{
         }catch (Exception e){
             e.printStackTrace();
         }
-//        Errorbook.getMap().forEach(new BiConsumer<String, Integer>() {
-//            @Override
-//            public void accept(String s, Integer integer) {
-//                System.out.println(s+integer);
-//            }
-//        });
     }
 
     public  static void save(){
