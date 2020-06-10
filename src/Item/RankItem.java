@@ -1,4 +1,4 @@
-package bean;
+package Item;
 
 public class RankItem implements java.io.Serializable{
     private String passageName;

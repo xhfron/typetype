@@ -1,9 +1,7 @@
 package dao;
 
-import bean.Passage;
-import bean.RankItem;
-
-import java.util.List;
+import Item.Passage;
+import Item.RankItem;
 
 public class History {
     private Errorbook errorbook;
@@ -20,7 +18,6 @@ public class History {
     public static void load(){
         Errorbook.load();
         Rank.load();
-//        PassageData.loadPassage();
     }
     public static void save(){
         Errorbook.save();

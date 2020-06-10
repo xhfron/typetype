@@ -1,15 +1,15 @@
-import bean.RankItem;
-import dao.Errorbook;
-import dao.History;
-import dao.Rank;
-import ui.StartUI;
-import ui.UIFrame;
+import ui.Test;
 
+
+import javax.swing.*;
 import javax.swing.text.BadLocationException;
 
 public class Main {
     static public void main(String[] args) throws BadLocationException {
-        History.load();
-        new UIFrame(new StartUI());
+//        History.load();
+        JFrame frame = new JFrame("i");
+        frame.setSize(1000,800);
+        frame.setContentPane(new Test());
+        frame.setVisible(true);
     }
 }

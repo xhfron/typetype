@@ -1,7 +1,6 @@
 package dao;
 
-import bean.Passage;
-import bean.RankItem;
+import Item.RankItem;
 
 import java.io.*;
 import java.util.ArrayList;
