@@ -1,9 +1,9 @@
 package bean;
 
 public class RankItem implements java.io.Serializable{
-    String passageName;
-    int speed;
-    double rate;
+    private String passageName;
+    private int speed;
+    private double rate;
 
     public RankItem(String passageName, int speed, double rate) {
         this.passageName = passageName;

@@ -9,8 +9,8 @@ import javax.swing.text.*;
 import java.awt.*;
 
 public class OriginTextLine extends JTextPane {
-    StyledDocument doc;
-    String originText;
+    private StyledDocument doc;
+    private String originText;
 
     public OriginTextLine(String originText) throws BadLocationException {
         doc = getStyledDocument();

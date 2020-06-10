@@ -5,5 +5,5 @@ import ui.event.CompleteEvent;
 import java.util.EventListener;
 
 public interface LineCompleteListener extends EventListener {
-    public void nextLine(CompleteEvent event);
+    void nextLine(CompleteEvent event);
 }

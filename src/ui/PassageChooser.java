@@ -1,27 +1,18 @@
 package ui;
 
 import bean.Passage;
-import dao.PassageData;
-import ui.component.MyPanel;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.*;
 
 public class PassageChooser extends JFrame{
     JFileChooser fileChooser;
-    JFrame frame;
     public PassageChooser() {
         fileChooser = new JFileChooser();
         fileChooser.setSize(750,450);
         fileChooser.setLocation(600,400);
         add(fileChooser);
         choose();
-//        setVisible(true);
     }
 
     private void choose(){
@@ -36,6 +27,7 @@ public class PassageChooser extends JFrame{
                     content.append(temp);
                 }
                 new UIFrame(new TypingUI(new Passage(f.getName(),content.toString())));
+                reader.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }

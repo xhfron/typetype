@@ -15,11 +15,6 @@ import java.awt.event.WindowEvent;
 
 //主界面暂定使用Border Layout
 public class UIFrame extends  JFrame {
-    JPanel panel;
-    TypingUI typing;
-    Passage passage;
-    StatusBar statusBar;
-    boolean flag = true;
     public UIFrame(MyPanel panel){
         super("打字游戏");
         setSize(800,600);

@@ -12,7 +12,6 @@ import java.awt.event.MouseListener;
 
 
 public class InputLine extends JTextField {
-    StyledDocument doc;
     public InputLine(){
         setPreferredSize(new Dimension(750, 44));
         setFont(TextStyle.getInputFont());

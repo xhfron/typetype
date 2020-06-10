@@ -9,14 +9,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ErrorBookUI extends MyPanel{
+class ErrorBookUI extends MyPanel{
     private JPanel container;
-    private JLabel title;
     private int count = 0;
     private final  int limit = 8;
-    private MyButton deleteButton;
     private JPanel words;
-    public ErrorBookUI() {
+    ErrorBookUI() {
         setSize(800,600);
         setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
         add(Box.createHorizontalStrut(20));
@@ -36,7 +34,7 @@ public class ErrorBookUI extends MyPanel{
         words.setPreferredSize(new Dimension(100,200));
         words.setAlignmentX(FlowLayout.LEFT);
         container.add(Box.createVerticalStrut(20));
-        title = new JLabel("易错单词");
+        JLabel title = new JLabel("易错单词");
         title.setFont(TextStyle.getTitleFont());
         title.setForeground(Color.pink);
         container.setAlignmentX(Box.CENTER_ALIGNMENT);
@@ -51,7 +49,7 @@ public class ErrorBookUI extends MyPanel{
                 words.add(Box.createVerticalStrut(8));
             }
         });
-        deleteButton = new MyButton("删除历史");
+        MyButton deleteButton = new MyButton("删除历史");
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

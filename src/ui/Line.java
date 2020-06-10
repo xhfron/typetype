@@ -13,16 +13,15 @@ import javax.swing.event.CaretListener;
 import java.awt.*;
 import java.util.EventListener;
 
-public class Line extends JPanel {
+class Line extends JPanel {
     private OriginTextLine originTextLine;
     private InputLine inputLine;
-    private BoxLayout boxLayout;
     private int lineNumber;
     private LineCompleteListener listener;
-    boolean pause = false;
-    public Line(int lineNumber, String originText) {
+    private boolean pause = false;
+    Line(int lineNumber, String originText) {
         this.lineNumber = lineNumber;
-        boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
+        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         setBackground(null);
         setOpaque(false);
         setLayout(boxLayout);
@@ -59,7 +58,6 @@ public class Line extends JPanel {
             originTextLine.check(inputLine.getText());
             if (inputString.length() >= originTextLine.getLength()) {
                 lineComplete();
-                return;
             }
         });
     }

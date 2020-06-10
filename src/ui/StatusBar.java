@@ -11,13 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StatusBar extends JPanel{
-    TimerUI timer;
-    JButton pause;
-    boolean timerFlag = false;
-    JLabel status;
-    PauseListener listener;
+    private TimerUI timer;
+    private JButton pause;
+    private boolean timerFlag = false;
+    private JLabel status;
     public StatusBar(PauseListener listener) {
-        this.listener = listener;
         setBackground(new Color(213, 236, 244, 255));
         setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
         add(Box.createHorizontalStrut(8));

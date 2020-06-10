@@ -12,18 +12,17 @@ import java.awt.*;
 
 
 public class TypingUI extends MyPanel {
-    Passage passage;
-    Pages page;
-    StatusBar statusBar;
-    PassageFinishListener finishListener;
-    PauseListener pauseListener;
+    private Passage passage;
+    private Pages page;
+    private StatusBar statusBar;
+    private PauseListener pauseListener;
     public TypingUI(Passage passage) {
         this.passage = passage;
         setSize(800,600);
 
         page = new Pages(passage.getContent());
         page.addFinishListener(
-                finishListener = event -> dealFinish(event.getInput())
+                event -> dealFinish(event.getInput())
         );
         pauseListener = pause -> page.dealPause(pause);
         statusBar = new StatusBar(pauseListener);

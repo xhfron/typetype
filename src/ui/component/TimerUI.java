@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TimerUI extends JLabel {
-    int minute;
-    int second;
-    Timer timer;
+    private int minute;
+    private int second;
+    private Timer timer;
     public TimerUI() {
         minute = 0;
         second = 0;

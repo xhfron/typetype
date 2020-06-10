@@ -11,11 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StartUI extends MyPanel {
-    JLabel title;
-    Box menuBox;
-    MyButton typing;
-    MyButton rank;
-    MyButton errorBook;
+    private JLabel title;
+    private Box menuBox;
+    private MyButton typing;
+    private MyButton rank;
+    private MyButton errorBook;
 
     public StartUI() {
         setPreferredSize(new Dimension(800, 600));
@@ -32,26 +32,11 @@ public class StartUI extends MyPanel {
 
     private void init() {
         typing = new MyButton("开始练习");
-        typing.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new PassageChooser();
-            }
-        });
+        typing.addActionListener(e -> new PassageChooser());
         rank = new MyButton("排行榜");
-        rank.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UIFrame(new RankUI());
-            }
-        });
+        rank.addActionListener(e -> new UIFrame(new RankUI()));
         errorBook = new MyButton("易错记录");
-        errorBook.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UIFrame(new ErrorBookUI());
-            }
-        });
+        errorBook.addActionListener(e -> new UIFrame(new ErrorBookUI()));
         menuBox.add(typing);
         menuBox.add(Box.createVerticalStrut(8));
         menuBox.add(rank);

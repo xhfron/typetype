@@ -15,12 +15,12 @@ import java.util.regex.Pattern;
 public class Pages extends JPanel{
     private final int lineWidth = 49;//每行多少个字符 英文49个
     private int lineLimit = 4 ; //每页最多多少行 5或者4
-    List<Line> lines;
+    private List<Line> lines;
     private LineCompleteListener listener;
     private int nextLoadLine; //当前页的第一行的行号
     private int currentLine = 0;
-    String passage;
-    PassageFinishListener finishListener;
+    private String passage;
+    private PassageFinishListener finishListener;
     public Pages(String passage) {
         Pattern p = Pattern.compile("\\s*\n");
         Matcher m = p.matcher(passage);
