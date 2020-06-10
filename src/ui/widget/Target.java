@@ -6,7 +6,8 @@ import ui.util.WordState;
 import javax.swing.*;
 import java.awt.*;
 
-public class Target extends JLabel {
+public class Target extends JPanel {
+    private JLabel label;
     private String word;
     private int x;
     private int y;
@@ -16,7 +17,11 @@ public class Target extends JLabel {
         this.x = x;
         this.y = y;
         this.id = id;
+        setPreferredSize(new Dimension(50,30));
+        label = new JLabel(word);
+        add(label);
         updateState(WordState.NORMAL);
+        System.out.println(word);
     }
 
     public int getId() {
@@ -32,6 +37,7 @@ public class Target extends JLabel {
     public int down(int path){
         y+=path;
         repaint();
+        System.out.println(word+y);
         return y;
     }
 
@@ -56,7 +62,7 @@ public class Target extends JLabel {
 
     public boolean updateWord(){
         word = word.substring(1);
-        setText(word);
+        label.setText(word);
         return word.length()==0;
     }
 
