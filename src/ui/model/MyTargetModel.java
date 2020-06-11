@@ -2,6 +2,7 @@ package ui.model;
 
 import Item.Passage;
 import ui.model.TargetModel;
+import ui.util.WordState;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -27,8 +28,32 @@ public class MyTargetModel implements Runnable {
         current = null;
     }
 
-    public void dealInput(char input){
-        System.out.println(input);
+    public boolean dealKey(char input){
+        if(current==null){
+            for(TargetModel target : targetQueue){
+                if(input==target.getFirstChar()){
+                    current = target;
+                    break;
+                }
+            }
+        }
+        if(input==current.getFirstChar()){
+                updateWord(current);
+                return true;
+            }
+        return false;
+    }
+
+    private void updateWord(TargetModel target) {
+        if(target.updateWord()){
+            bornPosition.set(target.getId(),0);
+            targetQueue.remove(target);
+            target.setState(WordState.DONE);
+            targetQueue.remove(target);
+            current = null;
+        }else{
+            target.setState(WordState.SELECT);
+        }
     }
 
     @Override

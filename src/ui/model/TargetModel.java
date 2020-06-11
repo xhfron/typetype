@@ -18,6 +18,7 @@ public class TargetModel {
         this.x = x;
         this.y = y;
         this.id = id;
+        state = WordState.NORMAL;
         System.out.println(word);
     }
 
