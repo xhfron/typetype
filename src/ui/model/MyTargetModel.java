@@ -1,6 +1,7 @@
 package ui.model;
 
 import Item.Passage;
+import dao.Errorbook;
 import ui.model.TargetModel;
 import ui.util.WordState;
 
@@ -13,7 +14,7 @@ public class MyTargetModel implements Runnable {
     private Queue<TargetModel> targetQueue;
     private List<Integer> bornPosition;
     private final int yLimit =400;
-    private final int targetLimit = 4;
+    private final int targetLimit = 8;
     private final int targetWidth = 100;
     private Passage passage;
     private boolean flag = true;
@@ -28,7 +29,7 @@ public class MyTargetModel implements Runnable {
         current = null;
     }
 
-    public boolean dealKey(char input){
+    public void dealKey(char input){
         if(current==null){
             for(TargetModel target : targetQueue){
                 if(input==target.getFirstChar()){
@@ -37,11 +38,15 @@ public class MyTargetModel implements Runnable {
                 }
             }
         }
+        if(current==null){
+            return;
+            //这都不对
+        }
         if(input==current.getFirstChar()){
                 updateWord(current);
-                return true;
-            }
-        return false;
+            }else{
+            Errorbook.count(current.getWord());
+        }
     }
 
     private void updateWord(TargetModel target) {

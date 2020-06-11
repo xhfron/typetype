@@ -8,10 +8,15 @@ import java.awt.*;
 
 public class TargetModel {
     private String word;
+    private String originWord;
     private int x;
     private int y;
     private int id;
     private WordState state;
+
+    public String getOriginWord() {
+        return originWord;
+    }
 
     public TargetModel(String word, int x, int y, int id) {
         this.word = word;
@@ -19,6 +24,7 @@ public class TargetModel {
         this.y = y;
         this.id = id;
         state = WordState.NORMAL;
+        originWord = word;
         System.out.println(word);
     }
 

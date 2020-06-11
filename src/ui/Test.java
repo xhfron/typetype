@@ -19,14 +19,13 @@ public class Test extends MyPanel implements Runnable{
         modelControl = new MyTargetModel(passage);
         new Thread(modelControl).start();
         new Thread(this).start();
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-//                System.out.println(e.getKeyChar());
-                modelControl.dealKey(e.getKeyChar());
-            }
-        });
-        setFocusable(true);
+//        addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyTyped(KeyEvent e) {
+//                modelControl.dealKey(e.getKeyChar());
+//            }
+//        });
+//        setFocusable(true);
     }
 
     @Override

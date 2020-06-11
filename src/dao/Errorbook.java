@@ -4,42 +4,22 @@ import java.io.*;
 import java.util.HashMap;
 
 public class Errorbook implements java.io.Serializable{
-    static HashMap<String,Integer> map;
-    static final String errorBookPath = "errorBook.ser";
-    public static HashMap<String, Integer> getMap() {
+    private static HashMap<String,Integer> map;
+    private static final String errorBookPath = "errorBook.ser";
+    private static HashMap<String, Integer> getMap() {
         return map;
     }
 
-    public static void setMap(HashMap<String, Integer> map) {
+    private static void setMap(HashMap<String, Integer> map) {
         Errorbook.map = map;
     }
 
-    private static void count(String word) {
+    public static void count(String word) {
         map.put(word,map.getOrDefault(word,0)+1);
     }
 
-    public static void checkWrongWord(String content, String input) {
-        String word = "";
-        boolean flag = false;
-        for(int i=0;i<content.length();i++){
-            char ch = content.charAt(i);
-            if(ch>='a'&&ch<='z'){
-                word+=ch;
-            }else if(ch>='A'&&ch<='Z'){
-                word+=ch;
-            }else{
-                if(flag){
-                    count(word);
-                }
-                word = "";
-                flag = false;
-                continue;
-            }
-            flag = ch != input.charAt(i);
-        }
-    }
 
-    public static void load(){
+    static void load(){
         File rankFile = new File(errorBookPath);
         try{
             if(rankFile.exists()){
@@ -52,7 +32,7 @@ public class Errorbook implements java.io.Serializable{
         }
     }
 
-    public  static void save(){
+    static void save(){
         try {
             FileOutputStream fileOut = new FileOutputStream(errorBookPath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
