@@ -1,6 +1,7 @@
 package ui.view;
 
-import ui.model.InputModel;
+import ui.listener.InputListener;
+import ui.model.StatusModel;
 import ui.widget.MyPanel;
 
 import javax.swing.*;
@@ -8,46 +9,42 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class StatusBar extends MyPanel implements Runnable {
-    JLabel icon;
-    InputModel model;
-    JProgressBar progress;
-    public StatusBar() {
+public class StatusBar extends MyPanel{
+    private JLabel icon;
+    private JProgressBar progressBar;
+    private String iconPath;
+    private int progress;
+    public StatusBar(InputListener listener) {
         icon = new JLabel();
         icon.setPreferredSize(new Dimension(100,100));
-        progress = new JProgressBar();
-        model = new InputModel();
+        progressBar = new JProgressBar();
         setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
         add(icon);
-        add(progress);
+        add(progressBar);
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                model.dealKey(e);
-                System.out.println(e.getKeyChar());
+                listener.dealKey(e.getKeyChar());
             }
         });
-
-
         setFocusable(true);
-        new Thread(this).start();
+    }
+
+    public void setIconPath(String iconPath) {
+        this.iconPath = iconPath;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        icon.setIcon(new ImageIcon(new ImageIcon(model.getIconPath()).getImage().
+        icon.setIcon(new ImageIcon(new ImageIcon(iconPath).getImage().
                 getScaledInstance(20,20,Image.SCALE_DEFAULT)));
-        progress.setValue(model.getProgress());
+        progressBar.setValue(progress);
     }
 
-    @Override
-    public void run() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        repaint();
-    }
+
 }

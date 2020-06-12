@@ -1,15 +1,23 @@
 package ui.view;
 
 import Item.Passage;
-import ui.Test;
+import ui.model.MyTargetModel;
+import ui.model.StatusModel;
 import ui.widget.MyPanel;
 
 import java.awt.*;
 
 public class Stage extends MyPanel {
-    public Stage() {
+    private MyTargetModel targetModel;
+    private StatusModel statusModel;
+    public Stage(Passage passage) {
+        statusModel = new StatusModel();
+
+        targetModel = new MyTargetModel(passage,statusModel);
+        StatusBar statusBar = new StatusBar(targetModel);
+        statusModel.setStatusBar(statusBar);
         setLayout(new BorderLayout());
-        add(new Test(new Passage("","")), BorderLayout.CENTER);
-        add(new StatusBar(),BorderLayout.SOUTH);
+        add(new TargetPanel(targetModel), BorderLayout.CENTER);
+        add(statusBar,BorderLayout.SOUTH);
     }
 }

@@ -39,7 +39,9 @@ public class Passage {
         return words.get(index++);
 
     }
-
+    public int getTotalWord(){
+        return words.size();
+    }
     public boolean hasNextWord(){
         return index<words.size();
     }

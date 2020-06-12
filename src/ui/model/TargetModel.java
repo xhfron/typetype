@@ -51,7 +51,6 @@ public class TargetModel {
 
     public int down(int path) {
         y += path;
-        System.out.println(word + y);
         return y;
     }
 
