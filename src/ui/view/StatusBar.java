@@ -1,13 +1,10 @@
 package ui.view;
 
-import ui.listener.InputListener;
-import ui.model.StatusModel;
 import ui.widget.MyPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
 
 public class StatusBar extends MyPanel{
     private JLabel icon;
@@ -15,8 +12,6 @@ public class StatusBar extends MyPanel{
     private JLabel speed;
     private JLabel accuracy;
     private JLabel time;
-
-
 
     public StatusBar() {
         icon = new JLabel();

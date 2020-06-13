@@ -1,5 +1,7 @@
 package ui.controller;
 
+import Item.RankItem;
+import dao.Rank;
 import ui.model.MyTargetModel;
 import ui.model.StatusModel;
 import ui.view.StatusBar;
@@ -34,8 +36,6 @@ public class StageController {
         updateTime();
         updatePosition();
     }
-
-
 
     private void updateTime() {
         new Thread(()->{
@@ -79,6 +79,7 @@ public class StageController {
         if (!running || statusModel.isEnd()||targetModel.isFail()) {
             running = false;
             statusBar.removeKeyListener(inputKeyAdapter);
+            calc();
         }
     }
 
@@ -87,6 +88,7 @@ public class StageController {
             while(running){
                 if (statusModel.isEnd()||targetModel.isFail()) {
                     running = false;
+                    calc();
                     break;
                 }
                 targetModel.refresh();
@@ -99,6 +101,12 @@ public class StageController {
                 }
             }
         }).start();
+    }
+
+    private void calc() {
+        System.out.println("咋回事？？");
+        Rank.addItem(statusModel.getRank());
+        JOptionPane.showMessageDialog(targetPanel,targetModel.isFail()?"Game Over!":"You Win!");
     }
 
 }

@@ -1,8 +1,7 @@
 package ui.model;
 
-import Item.Passage;
-import ui.listener.CheckListener;
-import ui.view.StatusBar;
+import Item.RankItem;
+import dao.Rank;
 
 public class StatusModel{
     private int totalWord;
@@ -11,7 +10,9 @@ public class StatusModel{
     private int keyTypeCount;
     private int rightCount;
     private int second;
-    public StatusModel(int totalWord) {
+    private String passageName;
+    public StatusModel(int totalWord,String passageName) {
+        this.passageName = passageName;
         this.totalWord = totalWord;
         keyTypeCount = 0;
         rightCount = 0;
@@ -67,5 +68,9 @@ public class StatusModel{
 
     public String getAccuracy() {
         return String.format("%.2f",(double)rightCount/keyTypeCount*100)+"%";
+    }
+
+    public RankItem getRank(){
+        return new RankItem(passageName,getSpeed(),keyTypeCount==0?0:(double)rightCount/keyTypeCount);
     }
 }

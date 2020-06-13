@@ -15,7 +15,7 @@ public class Stage extends MyPanel {
     private StatusBar statusBar;
     private StageController controller;
     public Stage(Passage passage) {
-        statusModel = new StatusModel(passage.getTotalWord());
+        statusModel = new StatusModel(passage.getTotalWord(),passage.getTitle());
         targetModel = new MyTargetModel(passage);
         statusBar = new StatusBar();
         targetPanel = new TargetPanel();

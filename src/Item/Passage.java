@@ -11,8 +11,6 @@ public class Passage {
     private int index = 0;
     public Passage(String title,String content) {
         this.title = title;
-        content = "The drawString method does not handle new-lines. You'll have to split the string on new-line characters yourself and draw the lines one by one with a proper ";
-
         words = new ArrayList<>();
         iterator = words.listIterator();
         makeWords(content);

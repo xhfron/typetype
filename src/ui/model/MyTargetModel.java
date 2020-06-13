@@ -20,7 +20,7 @@ public class MyTargetModel{
     private WordModel current;
     private boolean right;
     private boolean complete;
-    private final int downPath = 5;
+    private final int downPath = 10;
     private boolean fail;
     public boolean isFail() {
         return fail;

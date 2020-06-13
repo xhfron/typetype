@@ -4,6 +4,7 @@ import Item.RankItem;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Rank{
@@ -13,7 +14,8 @@ public class Rank{
         File rankFile = new File(rankFilePath);
         try{
             if(rankFile.exists()){
-                Rank.setRanks((List<RankItem>) new ObjectInputStream(new FileInputStream(rankFile.getPath())).readObject());
+                Rank.setRanks((List<RankItem>) new ObjectInputStream(new
+                        FileInputStream(rankFile.getPath())).readObject());
             }else {
                 Rank.setRanks(new ArrayList<>());
             }
@@ -25,7 +27,7 @@ public class Rank{
         }
     }
 
-    public  static void save(){
+    static void save(){
         try {
             FileOutputStream fileOut = new FileOutputStream(rankFilePath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -40,6 +42,7 @@ public class Rank{
 
     public static void addItem(RankItem rankItem) {
         ranks.add(rankItem);
+        sort();
     }
 
     public static List<RankItem> getRanks() {
@@ -52,5 +55,14 @@ public class Rank{
 
     public static void clear() {
         ranks.clear();
+    }
+
+    private static void sort(){
+        ranks.sort(new Comparator<RankItem>() {
+            @Override
+            public int compare(RankItem rankItem, RankItem t1) {
+                return t1.getSpeed()-rankItem.getSpeed();
+            }
+        });
     }
 }
