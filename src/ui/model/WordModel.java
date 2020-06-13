@@ -6,7 +6,7 @@ import ui.util.WordState;
 import javax.swing.*;
 import java.awt.*;
 
-public class TargetModel {
+public class WordModel {
     private String word;
     private String originWord;
     private int x;
@@ -18,7 +18,7 @@ public class TargetModel {
         return originWord;
     }
 
-    public TargetModel(String word, int x, int y, int id) {
+    public WordModel(String word, int x, int y, int id) {
         this.word = word;
         this.x = x;
         this.y = y;

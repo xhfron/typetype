@@ -2,7 +2,6 @@ package controller;
 
 import ui.model.MyTargetModel;
 import ui.model.StatusModel;
-import ui.model.TargetModel;
 import ui.util.ColorFactory;
 import ui.util.FontFactory;
 import ui.view.StatusBar;

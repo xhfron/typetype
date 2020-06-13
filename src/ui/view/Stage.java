@@ -4,7 +4,6 @@ import Item.Passage;
 import controller.StageController;
 import ui.model.MyTargetModel;
 import ui.model.StatusModel;
-import ui.model.TargetModel;
 import ui.widget.MyPanel;
 
 import java.awt.*;
