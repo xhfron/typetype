@@ -2,43 +2,50 @@ package ui.model;
 
 import Item.Passage;
 import dao.Errorbook;
+import jdk.net.SocketFlow;
 import ui.listener.CheckListener;
 import ui.listener.InputListener;
 import ui.model.TargetModel;
 import ui.util.WordState;
+import ui.view.StatusBar;
+import ui.view.TargetPanel;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class MyTargetModel implements Runnable, InputListener {
+public class MyTargetModel{
     private final int yLimit = 400;
     private final int targetLimit = 8;
     private final int targetWidth = 100;
     private Queue<TargetModel> targetQueue;
     private List<Integer> bornPosition;
     private Passage passage;
-    private boolean flag = true;
     private TargetModel current;
-    private CheckListener listener;
-    private int wordCount;
-    private int totalWord;
-    public MyTargetModel(Passage passage, CheckListener listener) {
+    private boolean right;
+    private boolean complete;
+    private final int downPath = 5;
+
+    public boolean isFail() {
+        return fail;
+    }
+
+    private boolean fail;
+
+    public MyTargetModel(Passage passage) {
         this.passage = passage;
-        this.listener = listener;
-        wordCount = 0;
-        totalWord = passage.getTotalWord();
         targetQueue = new LinkedList<>();
         bornPosition = new ArrayList<>();
         for (int i = 0; i < targetLimit; i++) {
             bornPosition.add(0);
         }
         current = null;
+        complete = false;
     }
 
     public void dealKey(char input) {
-        boolean right = true;
+        right = true;
         if (current == null) {
             for (TargetModel target : targetQueue) {
                 if (input == target.getFirstChar()) {
@@ -55,7 +62,17 @@ public class MyTargetModel implements Runnable, InputListener {
 //            Errorbook.count(current.getWord());//这里会抛异常
             right = false;
         }
-        listener.sendRes(right);
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+    public boolean isComplete(){
+        if(complete){
+            complete = false;
+            return true;
+        }
+        return false;
     }
 
     private void updateWord(TargetModel target) {
@@ -65,42 +82,19 @@ public class MyTargetModel implements Runnable, InputListener {
             target.setState(WordState.DONE);
             targetQueue.remove(target);
             current = null;
-            wordCount++;
-            listener.sendProgress(wordCount*100/totalWord);
-            if(wordCount==totalWord){
-                flag = false;
-            }
+            complete = true;
         } else {
             target.setState(WordState.SELECT);
         }
     }
 
-    @Override
-    public void run() {
-        while (flag) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            while (targetQueue.size() < targetLimit && passage.hasNextWord()) {
-                makeTarget();
-            }
-            for (TargetModel model : targetQueue) {
-                if (model.down(10) > yLimit) {
-                    System.out.println("发送事件");
-                    return;
-                }
-            }
-        }
 
-    }
 
     public Queue<TargetModel> getTargetQueue() {
         return targetQueue;
     }
 
-    boolean makeTarget() {
+    private boolean makeTarget() {
         int pos = -1;
         for (int i = 0; i < targetLimit; i++) {
             if (bornPosition.get(i) == 0) {
@@ -116,5 +110,16 @@ public class MyTargetModel implements Runnable, InputListener {
                 targetWidth * pos, 0, pos);
         targetQueue.add(target);
         return true;
+    }
+    public void refresh(){
+        while (targetQueue.size() < targetLimit && passage.hasNextWord()) {
+            makeTarget();
+        }
+        for (TargetModel model : targetQueue) {
+            if (model.down(downPath) > yLimit) {
+                fail = false;
+                return;
+            }
+        }
     }
 }

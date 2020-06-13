@@ -3,34 +3,36 @@ package ui.model;
 import ui.listener.CheckListener;
 import ui.view.StatusBar;
 
-public class StatusModel implements CheckListener {
-    private StatusBar statusBar;
+public class StatusModel{
+    private int totalWord;
+    private int wordCount;
+    private boolean res;
 
-    public void setStatusBar(StatusBar statusBar) {
-        this.statusBar = statusBar;
+    public void setRes(boolean res) {
+        this.res = res;
+    }
+    public void completeWord(boolean complete){
+        if(complete){
+            wordCount++;
+        }
     }
 
-    public StatusModel() {
-
+    public StatusModel(int totalWord) {
+        this.totalWord = totalWord;
     }
 
-    @Override
-    public void sendRes(boolean right) {
-       statusBar.setIconPath(getIconPath(right));
-       statusBar.repaint();
-    }
-
-    public String getIconPath(boolean res){
+    public String getIconPath(){
         if(res){
             return "resource/icon/right.png";
         }
         return "resource/icon/wrong.png";
     }
 
-    @Override
-    public void sendProgress(int progress) {
-       statusBar.setProgress(progress);
-       statusBar.repaint();
+    public int getProgress(){
+        return wordCount*100/totalWord;
     }
 
+    public boolean isEnd(){
+        return wordCount==totalWord;
+    }
 }
