@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Errorbook implements java.io.Serializable{
     private static HashMap<String,Integer> map;
     private static final String errorBookPath = "errorBook.ser";
-    private static HashMap<String, Integer> getMap() {
+    public static HashMap<String, Integer> getMap() {
         return map;
     }
 

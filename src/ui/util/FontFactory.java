@@ -12,7 +12,7 @@ public class FontFactory {
     public static Font getFont(String name){
         switch (name){
             case "title":
-                return new Font("Arial",Font.BOLD,30);
+                return new Font("微软雅黑",Font.BOLD,30);
             default:
                 return new Font("微软雅黑",Font.PLAIN,20);
         }

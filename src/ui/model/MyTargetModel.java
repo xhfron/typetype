@@ -1,6 +1,7 @@
 package ui.model;
 
 import Item.Passage;
+import dao.Errorbook;
 import ui.util.WordState;
 import ui.view.StatusBar;
 import ui.view.TargetPanel;
@@ -25,7 +26,7 @@ public class MyTargetModel{
     public boolean isFail() {
         return fail;
     }
-
+    private boolean typeWrong;
 
 
     public MyTargetModel(Passage passage) {
@@ -38,6 +39,7 @@ public class MyTargetModel{
         current = null;
         complete = false;
         fail = false;
+        typeWrong = false;
     }
 
     public void dealKey(char input) {
@@ -55,8 +57,10 @@ public class MyTargetModel{
         } else if (input == current.getFirstChar()) {
             updateWord(current);
         } else if(current!=null){
-//            Errorbook.count(current.getWord());//这里会抛异常
             right = false;
+        }
+        if(!right){
+            typeWrong = true;
         }
     }
 
@@ -77,6 +81,8 @@ public class MyTargetModel{
             targetQueue.remove(wordModel);
             wordModel.setState(WordState.DONE);
             targetQueue.remove(wordModel);
+            Errorbook.count(current.getOriginWord());
+            typeWrong = false;
             current = null;
             complete = true;
         } else {

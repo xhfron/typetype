@@ -32,7 +32,7 @@ public class StartUI extends MyPanel {
         rank = new JButton("排行榜");
         rank.addActionListener(e -> new UIFrame(new RankUI()));
         errorBook = new JButton("易错记录");
-//        errorBook.addActionListener(e -> new UIFrame(new ErrorBookUI()));
+        errorBook.addActionListener(e -> new UIFrame(new ErrorBookUI()));
         menuBox.add(typing);
         menuBox.add(Box.createVerticalStrut(8));
         menuBox.add(rank);
