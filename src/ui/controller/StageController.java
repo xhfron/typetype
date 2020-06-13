@@ -47,6 +47,7 @@ public class StageController {
                 }
                 if(statusModel.isEnd()||targetModel.isFail()){
                     running = false;
+                    calc();
                     break;
                 }
                 statusModel.upSecond();

@@ -14,14 +14,14 @@ import java.util.Queue;
 public class MyTargetModel{
     private final int yLimit = 470;
     private final int targetLimit = 8;
-    private final int targetWidth = 100;
+    private final int targetWidth = 110;
     private Queue<WordModel> targetQueue;
     private List<Integer> bornPosition;
     private Passage passage;
     private WordModel current;
     private boolean right;
     private boolean complete;
-    private final int downPath = 10;
+    private final int downPath = 5;
     private boolean fail;
     public boolean isFail() {
         return fail;
