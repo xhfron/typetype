@@ -1,9 +1,7 @@
-package controller;
+package ui.controller;
 
 import ui.model.MyTargetModel;
 import ui.model.StatusModel;
-import ui.util.ColorFactory;
-import ui.util.FontFactory;
 import ui.view.StatusBar;
 import ui.view.TargetPanel;
 
@@ -19,7 +17,6 @@ public class StageController {
     private StatusBar statusBar;
     private KeyAdapter inputKeyAdapter;
     private boolean running;
-
     public StageController(StatusModel statusModel, MyTargetModel targetModel, TargetPanel targetPanel, StatusBar statusBar) {
         this.statusModel = statusModel;
         this.targetModel = targetModel;
@@ -33,24 +30,38 @@ public class StageController {
             }
         };
         statusBar.addKeyListener(inputKeyAdapter);
-
         running = true;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(running){
-                    updatePosition();
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        updateTime();
+        updatePosition();
+    }
+
+
+
+    private void updateTime() {
+        new Thread(()->{
+            while (running){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                if(statusModel.isEnd()||targetModel.isFail()){
+                    running = false;
+                    break;
+                }
+                statusModel.upSecond();
+                System.out.println("时间++");
+                SwingUtilities.invokeLater(() -> {
+                    statusBar.getTime().setText("时间： "
+                            + statusModel.getMinute() + ":" + statusModel.getSecond());
+                    statusBar.getSpeed().setText("速度： "
+                            + statusModel.getSpeed() + "KPM");
+                });
             }
         }).start();
     }
 
-    void updateByInput(char input) {
+    private void updateByInput(char input) {
         targetModel.dealKey(input);
         statusModel.setRes(targetModel.isRight());
         statusModel.completeWord(targetModel.isComplete());
@@ -61,30 +72,33 @@ public class StageController {
                         .getImage().
                                 getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
                 statusBar.getProgressBar().setValue(statusModel.getProgress());
+                statusBar.getAccuracy().setText("准确率: " + statusModel.getAccuracy());
             }
         });
 
-        if (statusModel.isEnd()) {
+        if (!running || statusModel.isEnd()||targetModel.isFail()) {
             running = false;
             statusBar.removeKeyListener(inputKeyAdapter);
         }
     }
 
-    void updatePosition() {
-        targetModel.refresh();
-        if (targetModel.isFail()) {
-            running = false;
-            return;
-        }
-        targetPanel.setTargets(targetModel.getTargetQueue());
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                targetPanel.repaint();
+    private void updatePosition() {
+        new Thread(()->{
+            while(running){
+                if (statusModel.isEnd()||targetModel.isFail()) {
+                    running = false;
+                    break;
+                }
+                targetModel.refresh();
+                targetPanel.setTargets(targetModel.getTargetQueue());
+                SwingUtilities.invokeLater(() -> targetPanel.repaint());
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        });
-
-
+        }).start();
     }
 
 }

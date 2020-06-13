@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class MyTargetModel{
-    private final int yLimit = 400;
+    private final int yLimit = 470;
     private final int targetLimit = 8;
     private final int targetWidth = 100;
     private Queue<WordModel> targetQueue;
@@ -21,12 +21,12 @@ public class MyTargetModel{
     private boolean right;
     private boolean complete;
     private final int downPath = 5;
-
+    private boolean fail;
     public boolean isFail() {
         return fail;
     }
 
-    private boolean fail;
+
 
     public MyTargetModel(Passage passage) {
         this.passage = passage;
@@ -37,6 +37,7 @@ public class MyTargetModel{
         }
         current = null;
         complete = false;
+        fail = false;
     }
 
     public void dealKey(char input) {
@@ -112,7 +113,7 @@ public class MyTargetModel{
         }
         for (WordModel model : targetQueue) {
             if (model.down(downPath) > yLimit) {
-                fail = false;
+                fail = true;
                 return;
             }
         }

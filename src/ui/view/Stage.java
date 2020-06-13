@@ -1,7 +1,7 @@
 package ui.view;
 
 import Item.Passage;
-import controller.StageController;
+import ui.controller.StageController;
 import ui.model.MyTargetModel;
 import ui.model.StatusModel;
 import ui.widget.MyPanel;
@@ -18,7 +18,7 @@ public class Stage extends MyPanel {
         statusModel = new StatusModel(passage.getTotalWord());
         targetModel = new MyTargetModel(passage);
         statusBar = new StatusBar();
-        targetPanel = new TargetPanel(targetModel);
+        targetPanel = new TargetPanel();
         controller = new StageController(statusModel,targetModel,targetPanel,statusBar);
         setLayout(new BorderLayout());
         add(targetPanel,BorderLayout.CENTER);

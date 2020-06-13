@@ -10,14 +10,15 @@ import ui.widget.MyPanel;
 import java.awt.*;
 import java.util.Queue;
 
-public class TargetPanel extends MyPanel{
-    public void setTargets(Queue<WordModel> targets) {
-        this.targets = targets;
+public class TargetPanel extends MyPanel {
+    private Queue<WordModel> targets;
+
+    TargetPanel() {
+        setPreferredSize(new Dimension(800, 700));
     }
 
-    private Queue<WordModel> targets;
-    TargetPanel(MyTargetModel modelControl) {
-        setPreferredSize(new Dimension(800,600));
+    public void setTargets(Queue<WordModel> targets) {
+        this.targets = targets;
     }
 
     @Override
@@ -27,10 +28,10 @@ public class TargetPanel extends MyPanel{
     }
 
     private void drawTargets(Graphics g) {
-        for(WordModel model:targets){
+        for (WordModel model : targets) {
             g.setFont(FontFactory.getFont(model.getState()));
             g.setColor(ColorFactory.getColor(model.getState()));
-            g.drawString(model.getWord(),model.getX(),model.getY());
+            g.drawString(model.getWord(), model.getX(), model.getY());
         }
     }
 }
