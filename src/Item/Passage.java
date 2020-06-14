@@ -7,16 +7,15 @@ import java.util.ListIterator;
 public class Passage {
     private String title;
     private List<String> words;
-    private ListIterator<String> iterator;
     private int index = 0;
+
     public Passage(String title,String content) {
         this.title = title;
         words = new ArrayList<>();
-        iterator = words.listIterator();
         makeWords(content);
     }
 
-    void makeWords(String content){
+    private void makeWords(String content){
         String word = "";
         for(int i=0;i<content.length();i++){
             char ch = content.charAt(i);
@@ -35,11 +34,12 @@ public class Passage {
 
     public String getNextWord() {
         return words.get(index++);
-
     }
+
     public int getTotalWord(){
         return words.size();
     }
+
     public boolean hasNextWord(){
         return index<words.size();
     }

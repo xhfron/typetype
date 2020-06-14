@@ -1,8 +1,5 @@
 package dao;
 
-import Item.Passage;
-import Item.RankItem;
-
 public class History {
     public static void load(){
         Errorbook.load();

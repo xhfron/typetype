@@ -15,6 +15,7 @@ public class RankUI extends MyPanel {
     private int count = 0;
     private final  int limit = 8;
     private JButton deleteButton;
+
     public RankUI() {
         setSize(800,600);
         setLayout(new BoxLayout(this,BoxLayout.X_AXIS));

@@ -13,8 +13,8 @@ import java.util.Queue;
 
 public class MyTargetModel{
     private final int yLimit = 470;
-    private final int targetLimit = 8;
-    private final int targetWidth = 110;
+    private final int targetLimit = 6;
+    private final int targetWidth = 140;
     private Queue<WordModel> targetQueue;
     private List<Integer> bornPosition;
     private Passage passage;
@@ -23,11 +23,7 @@ public class MyTargetModel{
     private boolean complete;
     private final int downPath = 5;
     private boolean fail;
-    public boolean isFail() {
-        return fail;
-    }
     private boolean typeWrong;
-
 
     public MyTargetModel(Passage passage) {
         this.passage = passage;
@@ -64,17 +60,6 @@ public class MyTargetModel{
         }
     }
 
-    public boolean isRight() {
-        return right;
-    }
-    public boolean isComplete(){
-        if(complete){
-            complete = false;
-            return true;
-        }
-        return false;
-    }
-
     private void updateWord(WordModel wordModel) {
         if (wordModel.updateWord()) {
             bornPosition.set(wordModel.getId(), 0);
@@ -88,12 +73,6 @@ public class MyTargetModel{
         } else {
             wordModel.setState(WordState.SELECT);
         }
-    }
-
-
-
-    public Queue<WordModel> getTargetQueue() {
-        return targetQueue;
     }
 
     private boolean makeTarget() {
@@ -113,6 +92,7 @@ public class MyTargetModel{
         targetQueue.add(target);
         return true;
     }
+
     public void refresh(){
         while (targetQueue.size() < targetLimit && passage.hasNextWord()) {
             makeTarget();
@@ -123,5 +103,25 @@ public class MyTargetModel{
                 return;
             }
         }
+    }
+
+    public boolean isFail() {
+        return fail;
+    }
+
+    public Queue<WordModel> getTargetQueue() {
+        return targetQueue;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isComplete(){
+        if(complete){
+            complete = false;
+            return true;
+        }
+        return false;
     }
 }

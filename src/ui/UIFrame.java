@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
 public class UIFrame extends  JFrame {
     public UIFrame(MyPanel panel){
         super("打字游戏");
-        setSize(880,600);
+        setSize(904,600);
         setLocation(100,50);
         add(panel);
         setVisible(true);

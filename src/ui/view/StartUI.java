@@ -19,6 +19,7 @@ public class StartUI extends MyPanel {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         menuBox = Box.createVerticalBox();
         title = new JLabel("打字游戏");
+        title.setFont(FontFactory.getFont("headTitle"));
         init();
         add(Box.createHorizontalStrut(100));
         add(title);

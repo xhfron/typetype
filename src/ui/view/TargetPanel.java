@@ -17,10 +17,6 @@ public class TargetPanel extends MyPanel {
         setPreferredSize(new Dimension(800, 700));
     }
 
-    public void setTargets(Queue<WordModel> targets) {
-        this.targets = targets;
-    }
-
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -33,5 +29,9 @@ public class TargetPanel extends MyPanel {
             g.setColor(ColorFactory.getColor(model.getState()));
             g.drawString(model.getWord(), model.getX(), model.getY());
         }
+    }
+
+    public void setTargets(Queue<WordModel> targets) {
+        this.targets = targets;
     }
 }

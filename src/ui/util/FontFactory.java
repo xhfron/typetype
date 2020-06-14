@@ -13,8 +13,12 @@ public class FontFactory {
         switch (name){
             case "title":
                 return new Font("微软雅黑",Font.BOLD,30);
-            default:
+            case "item":
                 return new Font("微软雅黑",Font.PLAIN,20);
+            case "headTitle":
+                return new Font("微软雅黑",Font.PLAIN,40);
+            default:
+                return new Font("微软雅黑",Font.PLAIN,18);
         }
     }
 }

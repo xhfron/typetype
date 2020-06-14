@@ -7,8 +7,9 @@ import javax.swing.*;
 import java.io.*;
 
 public class PassageChooser extends JFrame{
-    JFileChooser fileChooser;
-    public PassageChooser() {
+    private JFileChooser fileChooser;
+
+    PassageChooser() {
         fileChooser = new JFileChooser();
         fileChooser.setSize(750,450);
         fileChooser.setLocation(600,400);
@@ -33,7 +34,6 @@ public class PassageChooser extends JFrame{
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
 
     }

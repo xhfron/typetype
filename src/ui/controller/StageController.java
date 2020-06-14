@@ -19,6 +19,7 @@ public class StageController {
     private StatusBar statusBar;
     private KeyAdapter inputKeyAdapter;
     private boolean running;
+
     public StageController(StatusModel statusModel, MyTargetModel targetModel, TargetPanel targetPanel, StatusBar statusBar) {
         this.statusModel = statusModel;
         this.targetModel = targetModel;
@@ -105,7 +106,6 @@ public class StageController {
     }
 
     private void calc() {
-        System.out.println("咋回事？？");
         Rank.addItem(statusModel.getRank());
         JOptionPane.showMessageDialog(targetPanel,targetModel.isFail()?"Game Over!":"You Win!");
     }

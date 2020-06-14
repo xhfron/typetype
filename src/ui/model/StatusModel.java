@@ -11,12 +11,19 @@ public class StatusModel{
     private int rightCount;
     private int second;
     private String passageName;
+
     public StatusModel(int totalWord,String passageName) {
         this.passageName = passageName;
         this.totalWord = totalWord;
         keyTypeCount = 0;
         rightCount = 0;
         second = 0;
+    }
+
+    public void completeWord(boolean complete){
+        if(complete){
+            wordCount++;
+        }
     }
 
     public void setRes(boolean res) {
@@ -26,13 +33,6 @@ public class StatusModel{
             rightCount++;
         }
     }
-    public void completeWord(boolean complete){
-        if(complete){
-            wordCount++;
-        }
-    }
-
-
 
     public String getIconPath(){
         if(res){

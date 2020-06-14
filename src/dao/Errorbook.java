@@ -6,18 +6,11 @@ import java.util.HashMap;
 public class Errorbook implements java.io.Serializable{
     private static HashMap<String,Integer> map;
     private static final String errorBookPath = "errorBook.ser";
-    public static HashMap<String, Integer> getMap() {
-        return map;
-    }
-
-    private static void setMap(HashMap<String, Integer> map) {
-        Errorbook.map = map;
-    }
 
     public static void count(String word) {
+
         map.put(word,map.getOrDefault(word,0)+1);
     }
-
 
     static void load(){
         File rankFile = new File(errorBookPath);
@@ -47,5 +40,14 @@ public class Errorbook implements java.io.Serializable{
 
     public static void clear() {
         map.clear();
+    }
+
+    public static HashMap<String, Integer> getMap() {
+
+        return map;
+    }
+
+    private static void setMap(HashMap<String, Integer> map) {
+        Errorbook.map = map;
     }
 }

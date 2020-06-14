@@ -9,7 +9,8 @@ import java.util.List;
 
 public class Rank{
     static private List<RankItem> ranks;
-    static final String rankFilePath = "rank.ser";
+    private static final String rankFilePath = "rank.ser";
+
     public static void load(){
         File rankFile = new File(rankFilePath);
         try{
@@ -45,15 +46,8 @@ public class Rank{
         sort();
     }
 
-    public static List<RankItem> getRanks() {
-        return ranks;
-    }
-
-    public static void setRanks(List<RankItem> ranks) {
-        Rank.ranks = ranks;
-    }
-
     public static void clear() {
+
         ranks.clear();
     }
 
@@ -64,5 +58,15 @@ public class Rank{
                 return t1.getSpeed()-rankItem.getSpeed();
             }
         });
+    }
+
+    public static List<RankItem> getRanks() {
+
+        return ranks;
+    }
+
+    public static void setRanks(List<RankItem> ranks) {
+
+        Rank.ranks = ranks;
     }
 }

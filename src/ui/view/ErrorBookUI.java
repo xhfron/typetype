@@ -49,6 +49,7 @@ class ErrorBookUI extends MyPanel {
                 words.add(Box.createVerticalStrut(8));
             }
         });
+
         JButton deleteButton = new JButton("删除历史");
         deleteButton.addActionListener(new ActionListener() {
             @Override
